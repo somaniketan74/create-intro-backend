@@ -1,0 +1,43 @@
+service: intro-backend # NOTE: update this with your service name
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-south-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+        - SNS:Publish
+        - SES:Publish
+      Resource: "*"
+  environment:
+    ENV: ${file(./secrets.yml):${opt:stage}.ENV}
+    MONGODB_URI: ${file(./secrets.yml):${opt:stage}.MONGODB_URI}
+    ISSUER: ${file(./secrets.yml):${opt:stage}.ISSUER}
+    JWKS_URI: ${file(./secrets.yml):${opt:stage}.JWKS_URI}
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  domains:
+    dev: api-dev.createintro.com
+    qa: api-qa.createintro.com
+    prod: api.createintro.com
+  customDomain:
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    stage: "${self:custom.stage}"
+
+functions:
+  app:
+    handler: server.run
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: false
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: false
+plugins:
+  - serverless-offline
+  - serverless-domain-manager

@@ -1,0 +1,4 @@
+{
+    "watch": ["controller","models","server.js", "validator"],
+    "ext": "js,json"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "intro-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "2.795.0",
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "crypto": "1.0.1",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "express-jwt": "6.0.0",
+    "express-validator": "6.9.2",
+    "jsonwebtoken": "8.5.1",
+    "jwk-to-pem": "2.0.4",
+    "jwks-rsa": "1.11.0",
+    "mongoose": "5.10.14",
+    "mongoose-delete": "0.5.3",
+    "serverless-http": "2.6.0",
+    "serverless-offline": "6.8.0",
+    "uuidv4": "6.2.6"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.6",
+    "serverless": "^2.20.0",
+    "serverless-domain-manager": "^5.1.0",
+    "serverless-webpack": "5.3.5"
+  }
+}
